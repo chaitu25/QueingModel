@@ -1,0 +1,13 @@
+package oracle.fsgbu.queuingModel;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class QueuingModelApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(QueuingModelApplication.class, args);
+	}
+
+}

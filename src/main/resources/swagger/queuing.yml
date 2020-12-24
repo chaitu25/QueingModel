@@ -1,0 +1,96 @@
+swagger: "2.0"
+info:
+ description: "Predict optmized number of teller count required." 
+ version: "1.0.0"
+ title: "Teller Counts Optimization"
+host: "api-plato.us.oracle.com:8080"
+basePath: "/api/1.0"
+consumes:
+ - "application/json"
+produces:
+ - "application/json"
+tags:
+ - name: "QueuingModel"
+   description: "This is a service that has to be used for creating usecase settings."
+
+schemes:
+- "https"
+
+paths:
+
+# path to create a new record and fetch all valid records or by intent
+#
+#  supprorted http methods POST and GET
+#
+# path example ../cmc-ml-ts-services
+ /tellerCount/optimizer:
+  post:
+    tags:
+     - "QueuingModel"
+    summary: "Predicts optimal number of teller counters."
+    description: "Builds a queuing model based on paramters provided to analyze optimal number of teller counters required to setup in a bank."
+    operationId: "predictTellerCount"
+    parameters:
+     - name: "expectedArrivalRate" 
+       in: "query" 
+       description: "Expected volume of customer (per hour) . This should be positive number" 
+       required: true
+       type: string
+     - name: "expectedServiceTime" 
+       in: "query" 
+       description: "Average time to serve a customer (in Minutes). This should be positive number" 
+       required: true
+       type: string
+     - name: "branchCapacity" 
+       in: "query" 
+       description: "Maximum number of customers can be in a branch at given time. This should be positive number" 
+       required: true
+       type: string
+     - name: "maxTellerCounters" 
+       in: "query" 
+       description: "Physical Teller counters available. This should be positive number" 
+       required: true
+       type: string
+     - name: "targetWaitTime" 
+       in: "query" 
+       description: "Target waiting time for a customer (in Minutes). This should be positive number" 
+       required: true
+       type: string
+    responses:
+      201: 
+        description: "Returns message of succes or failure " 
+        schema:
+          $ref: "#/definitions/OptimalTellerCounterResponse"
+      400:
+        description: "Malformed syntax."
+      401:
+        description: "Request does not have sufficient credentials."
+      403:
+        description: "Request is not authorized."
+      405:
+        description: "Invalid input"
+      500:
+        description: "Internal error" 
+  
+  
+definitions:
+ OptimalTellerCounterResponse:
+  type: object
+  properties:
+    optimizedTellerCounters:
+      type: number
+      format: int32
+      description: "Optimized Number of Teller Counters"
+    balkingProbability:
+      type: number
+      format: double
+      description: "Probability that customer will not be able to enter into the system"
+    category:
+      type: string
+      description: ""
+    optimizer:
+      type: string
+      description: ""
+    averageNumberOfCustomersInSystem:
+      type: number
+      description: ""

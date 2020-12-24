@@ -1,0 +1,8 @@
+{
+  "apiPackage" : "oracle.fsgbu.queuingModel.api",
+  "modelPackage": "oracle.fsgbu.queuingModel.dto",
+  "invokerPackage": "oracle.fsgbu.queuingModel",
+  "library": "spring-mvc",
+  "dateLibrary": "java8",
+  "hideGenerationTimestamp": true
+}

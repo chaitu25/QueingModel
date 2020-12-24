@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "92ad229a-5afc-476c-b88c-e839f8332d54",
+		"name": "Queue Modeling",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Queuing Model",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/queuingModel/tellerCount/optimizer?expectedArrivalRate=50&expectedServiceTime=10&branchCapacity=8&maxTellerCounters=2&targetWaitTime=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"queuingModel",
+						"tellerCount",
+						"optimizer"
+					],
+					"query": [
+						{
+							"key": "expectedArrivalRate",
+							"value": "50"
+						},
+						{
+							"key": "expectedServiceTime",
+							"value": "10"
+						},
+						{
+							"key": "branchCapacity",
+							"value": "8"
+						},
+						{
+							"key": "maxTellerCounters",
+							"value": "2"
+						},
+						{
+							"key": "targetWaitTime",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
